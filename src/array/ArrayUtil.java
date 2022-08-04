@@ -83,6 +83,29 @@ public class ArrayUtil {
         }
         return temp;
     }
+    //from 1 to n
+    public int findMissingNumber(int[] arr){
+        int n=arr.length+1;
+        int sum=n*(n+1)/2;
+        for(int num : arr){
+            sum=sum-num;
+        }
+        return sum;
+    }
+    public boolean isPalindrome(String word){
+        char[] charArray=word.toCharArray();
+        int start =0;
+        int end=word.length()-1;
+        
+        while(start<end){
+            if(charArray[start]!=charArray[end]){
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
+    }
     public static void main(String[] args){
         ArrayUtil au=new ArrayUtil();
         int[] arr={0,2,4,0,10,0,5};
@@ -97,5 +120,12 @@ public class ArrayUtil {
         System.out.println("The Size of original array - "+original.length);
         original=au.resize(original,10);
         System.out.println("The Size of original array  after resize - "+original.length);
+        
+        if(au.isPalindrome("madam")){
+            System.out.println("The String is palindrome!!");
+        }
+        else{
+            System.out.println("The String is not Palindrome???");
+        }
     } 
 }
