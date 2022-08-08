@@ -14,21 +14,6 @@ public class BinaryTree {
             this.data=data;
         }
     }
-    public void createBinaryTree(){
-        TreeNode first=new TreeNode(9);
-        TreeNode second=new TreeNode(2);
-        TreeNode third=new TreeNode(3);
-        TreeNode fourth=new TreeNode(4);
-        TreeNode fifth=new TreeNode(1);
-        
-        
-        root=first;
-        first.left=second;
-        first.right=third;
-        
-        second.left=fourth;
-        second.right=fifth;
-    }
     //recursive
     public void RpreOrder(TreeNode root){
         if(root==null){
@@ -85,9 +70,61 @@ public class BinaryTree {
             }
         }
     }
+    //Recursive postorder
+    public void RpostOrder(TreeNode root){
+        if(root==null){
+            return;
+        }
+        RpostOrder(root.left);
+        RpostOrder(root.right);
+        System.out.print(root.data+" ");
+    }
+    //Iterative postOrder
+    public void IpostOrder(TreeNode root){
+        if(root==null){
+            return;
+        }
+        TreeNode current=root;
+        Stack<TreeNode> stack=new Stack<>();
+        while(!stack.isEmpty()||current!=null){
+            if(current!=null){
+                stack.push(current);
+                current=current.left;
+            }
+            else{
+                TreeNode temp=stack.peek().right;
+                if(temp==null){
+                    temp=stack.pop();
+                    System.out.print(temp.data+" ");
+                    while(!stack.isEmpty()&&temp==stack.peek().right){
+                        temp=stack.pop();
+                        System.out.print(temp.data+" ");
+                    }
+                }
+                else{
+                    current=temp;
+                }
+            }
+        }
+    }
+    public void createBinaryTree(){
+        TreeNode first=new TreeNode(9);
+        TreeNode second=new TreeNode(2);
+        TreeNode third=new TreeNode(3);
+        TreeNode fourth=new TreeNode(4);
+        TreeNode fifth=new TreeNode(1);
+        
+        
+        root=first;
+        first.left=second;
+        first.right=third;
+        
+        second.left=fourth;
+        second.right=fifth;
+    }
     public static void main(String[] args){
         BinaryTree bt=new BinaryTree();
         bt.createBinaryTree();
-        bt.IinOrder(bt.root);
+        bt.IpostOrder(bt.root);
     }
 }
