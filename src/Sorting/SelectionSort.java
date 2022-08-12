@@ -1,5 +1,5 @@
 
-package Search;
+package Sorting;
 
 public class SelectionSort {
     public void printArray(int[] arr){
