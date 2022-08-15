@@ -76,6 +76,14 @@ public class BinarySearchTree {
             }
         }
     }
+    public void RpostOrder(TreeNode root){
+        if(root==null){
+            return;
+        }
+        RpostOrder(root.left);
+        Rpostorder(root.right);
+        System.out.print(root.data+" ");
+    }
     //Leetcode problem we want to maintain {min,max}
     public boolean isValid(TreeNode root,long min,long max){
         if(root==null){
