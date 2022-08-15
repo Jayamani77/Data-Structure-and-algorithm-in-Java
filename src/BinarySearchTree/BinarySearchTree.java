@@ -81,7 +81,7 @@ public class BinarySearchTree {
             return;
         }
         RpostOrder(root.left);
-        Rpostorder(root.right);
+        RpostOrder(root.right);
         System.out.print(root.data+" ");
     }
     //Leetcode problem we want to maintain {min,max}
