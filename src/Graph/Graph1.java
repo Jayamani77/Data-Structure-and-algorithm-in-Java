@@ -3,6 +3,8 @@ package Graph;
 //LinkedList Representation
 
 import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 
 public class Graph1 {
     private LinkedList<Integer>[] adj;
@@ -34,12 +36,50 @@ public class Graph1 {
         }
         return sb.toString();
     }
+    // breadth first search //uses vertices
+    public void bfs(int s){
+        boolean[] visited =new boolean[V];
+        Queue<Integer> q=new LinkedList<>();
+        visited[s]=true;
+        q.offer(s);
+        
+        while(!q.isEmpty()){
+            int u=q.poll();
+            System.out.print(u+" ");
+            for(int v:adj[u]){
+                if(!visited[v]){
+                    visited[v]=true;
+                    q.offer(v);
+                }
+            }
+        }
+    }
+    public void dfs(int s){
+        boolean[] visited=new boolean[V];
+        Stack<Integer> stack=new Stack<>();
+        stack.push(s);
+        while(!stack.isEmpty()){
+            int u=stack.pop();
+            if(!visited[u]){
+                visited[u]=true;
+                System.out.print(u+" ");
+                for(int v:adj[u]){
+                    if(!visited[v]){
+                        stack.push(v);
+                    }
+                }
+            }
+            
+        }
+    }
     public static void main(String[] args){
-        Graph1 g=new Graph1(4);
+        Graph1 g=new Graph1(5);
         g.addEdge(0, 1);
         g.addEdge(1, 2);
         g.addEdge(2, 3);
         g.addEdge(3, 0);
+        g.addEdge(2, 4);
         System.out.println(g);
+        g.dfs(0);
     }
 }
